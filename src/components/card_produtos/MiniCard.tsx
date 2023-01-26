@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const CardProdutos = (props: any) => {
 
     const card = useRef(null)
-    const produto = props.produto
+    const produto = props.produto 
     const [img, setImg] = useState('')
 
     useEffect(() => {        

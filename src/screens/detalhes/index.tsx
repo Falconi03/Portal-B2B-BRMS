@@ -193,7 +193,7 @@ const Detalhes = (props: any) => {
                                                 <td>
                                                     <img src={`http://clienteportal2.brms.com.br/images/produto/${produtoPedido.sku.substring(0, 17)}-1.jpg`} style={{ width: '50px', height: '50px' }} onError={({ currentTarget }) => {
                                                         currentTarget.onerror = null; // prevents looping
-                                                        currentTarget.src = "https://www.tcasaatacado.com.br/Content/desktop/images/produto-sem-imagem-1000x1000.jpg";
+                                                        currentTarget.src = "http://clienteportal2.brms.com.br/images/produto-sem-imagem.jpg";
                                                     }} />
                                                 </td>
                                                 <td>{produtoPedido.descricao}</td>
@@ -230,7 +230,7 @@ const Detalhes = (props: any) => {
                                                                                     <td>
                                                                                         <img src={`http://clienteportal2.brms.com.br/images/produto/${produtoPedido.sku.substring(0, 17)}-1.jpg`} style={{ width: '50px', height: '50px' }} onError={({ currentTarget }) => {
                                                                                             currentTarget.onerror = null; // prevents looping
-                                                                                            currentTarget.src = "https://www.tcasaatacado.com.br/Content/desktop/images/produto-sem-imagem-1000x1000.jpg";
+                                                                                            currentTarget.src = "http://clienteportal2.brms.com.br/images/produto-sem-imagem.jpg";
                                                                                         }} />
                                                                                     </td>
                                                                                     <td>{produtoPedido.descricao}</td>

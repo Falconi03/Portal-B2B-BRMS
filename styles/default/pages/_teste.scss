@@ -1,0 +1,60 @@
+.teste-page {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+
+    .teste {
+        color: white;
+        background-color: black;
+        width: 33%;
+        border-radius: 10px;
+        padding: 1rem;
+        overflow: hidden;
+
+        @include media-breakpoint-down(md) {
+            width: 100%;
+        }
+
+        img {
+            width: 100%;
+        }
+
+        .txt-test {
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .formulario {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+
+
+            .inp {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+
+                input {
+                    width: 70%;
+                    border-radius: 10px;
+                }
+            }
+
+            .btn-black {
+                border-radius: 10px;
+                padding: 5px 0;
+                font-weight: bold;
+            }
+
+            a {
+                color: white;
+            }
+        }
+    }
+
+
+}

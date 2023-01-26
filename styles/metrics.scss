@@ -1,0 +1,39 @@
+// Responsive
+$mobile: 375px;
+$mobileMin: 374px;
+$tablet: 768px;
+$tabletMin: 767px;
+$desktop: 1440px;
+$desktopMin: 1439px;
+$desktopHeight: 1024px;
+$mobileHeight: 667px;
+$maxDesktopContainer: 1240px;
+
+// Padding / Margin
+$spacer: 15px;
+$spacer2x: $spacer * 2;
+
+// Height
+$buttonHeight: 39px;
+
+// Width
+$buttonWidth: 150px;
+$buttonSmallWidth: 100px;
+$buttonLargeWidth: 200px;
+
+// Layout
+$borderRadius: 5px;
+
+// Fonts
+$smallFontSize: 12px;
+$smallLineHeight: 15px;
+$regularFontSize: 18px;
+
+:export {
+  borderRadius: $borderRadius;
+  buttonHeight: $buttonHeight;
+  buttonLargeWidth: $buttonLargeWidth;
+  buttonSmallWidth: $buttonSmallWidth;
+  buttonWidth: $buttonWidth;
+  spacer: $spacer;
+}

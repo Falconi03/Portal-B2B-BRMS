@@ -1,0 +1,99 @@
+.produto {
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: $white;
+    color: $black;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+    @include media-breakpoint-down(md) {
+        flex-direction: column;
+    }
+
+
+    .informacoes {
+        max-width: 70%;
+        padding: 2rem;
+        text-align: center;
+
+        @include media-breakpoint-down(md) {
+            max-width: 100%;
+            padding: 1rem 0.5rem;
+        }
+
+        h1 {
+            @include media-breakpoint-down(md) {
+                font-size: medium;
+                font-weight: bold;
+            }
+        }
+
+        tr {
+            font-weight: bold;
+
+            @include media-breakpoint-down(md) {
+                font-size: xx-small;
+            }
+
+            & input[type="number"]::-webkit-outer-spin-button,
+            input[type="number"]::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+
+            }
+
+            & input[type="number"] {
+                font-weight: bold;
+                -moz-appearance: textfield;
+                text-align: center;
+                width: 90%;
+            }
+        }
+    }
+
+
+    .descricao {
+        margin: 2rem 0 1rem 0;
+
+        @include media-breakpoint-down(md) {
+            font-size: xx-small
+        }
+
+        .txt-desc {
+            color: black;
+            text-align: center;
+            height: 30%;
+            overflow-y: scroll;
+
+            @include media-breakpoint-down(md) {
+                font-size: xx-small
+            }
+        }
+    }
+
+    .btns-desc {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+
+
+        button {
+            border: 1px solid #888;
+            background: transparent;
+            border-radius: 6px;
+            color: #888;
+            font-weight: 100;
+
+            &:hover {
+                background: #888;
+                color: $white;
+            }
+
+            &:active {
+                background: #888;
+                color: $white;
+            }
+        }
+    }
+}

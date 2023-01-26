@@ -1,0 +1,14 @@
+{
+  "fixturesFolder": "api_mocks",
+  "integrationFolder": "src",
+  "pluginsFile": "__tests__/cypress/plugins",
+  "supportFile": "__tests__/cypress/support",
+  "videosFolder": "__tests__/cypress/videos",
+  "screenshotsFolder": "__tests__/cypress/screenshots",
+  "testFiles": "**/*.cy.spec.ts",
+  "viewportWidth": 1200,
+  "viewportHeight": 660,
+  "chromeWebSecurity": false,
+  "video": false,
+  "baseUrl": "http://127.0.0.1:8080"
+}

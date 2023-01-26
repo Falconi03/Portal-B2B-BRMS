@@ -1,0 +1,48 @@
+import React from 'react'
+import { render } from 'react-dom'
+import { IntlProvider } from 'react-intl'
+import { Provider } from 'react-redux'
+import { Route, Router, Switch } from 'react-router-dom'
+import { toast, ToastContainer } from 'react-toastify'
+
+import { PrivateRoute } from '@/components'
+import Routes from '@/constants/routes'
+import history from '@/helpers/history'
+import configureStore from '@/redux'
+import App from '@/screens'
+import Dashboard from '@/screens/dashboard'
+import Estoque from '@/screens/estoque'
+import Login from '@/screens/login'
+import Logout from '@/screens/logout'
+import ResetPasswordChange from '@/screens/reset-password-change'
+import ResetPasswordRequest from '@/screens/reset-password-request'
+
+// Normalize must load first or it will overwrite our styles
+require('bootstrap/dist/css/bootstrap.css')
+require('normalize.css/normalize.css')
+require('react-toastify/dist/ReactToastify.css')
+require('@/../styles/fonts.scss')
+require('@/../styles/defaults.scss')
+
+const provider = (
+  <IntlProvider locale="pt-BR" defaultLocale="pt-BR">
+    <Provider store={configureStore()}>
+      <Router history={history}>
+        <App>
+          <Switch>
+            <Route exact path={Routes.Login} component={Login} />
+            <Route exact path={Routes.ResetPasswordRequest} component={ResetPasswordRequest} />
+            <Route exact path={Routes.ResetPasswordChange} component={ResetPasswordChange} />
+            <PrivateRoute exact path={Routes.Logout} component={Logout} />
+            <PrivateRoute exact path={Routes.Dashboard} component={Dashboard} />
+            <PrivateRoute exact path={Routes.Estoque} component={Estoque} />
+          </Switch>
+          <ToastContainer position={toast.POSITION.BOTTOM_RIGHT} autoClose={7000} />
+        </App>
+      </Router>
+    </Provider>
+  </IntlProvider>
+)
+
+const app = document.getElementById('app')
+if (app) render(provider, app)

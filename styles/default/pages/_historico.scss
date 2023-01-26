@@ -1,0 +1,24 @@
+.status {
+    background: green;
+    border-radius: 5px;
+    padding: 1px 5px;
+}
+
+.btns-historico {
+    text-align: end;
+
+    button {
+        max-width: 75%;
+        padding: 1px 0;
+    }
+}
+
+.dados-historico{
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    p{
+        font-size: 1rem;
+    }
+}

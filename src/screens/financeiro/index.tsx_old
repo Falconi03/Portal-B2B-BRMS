@@ -1,0 +1,56 @@
+import React, { useEffect, useState } from 'react'
+import ReactPaginate from 'react-paginate'
+import { connect } from 'react-redux'
+import { Dispatch } from 'redux'
+import { Page } from '@/components'
+import Strings from '@/constants'
+import EstoqueSaldo from '@/models/estoque-saldo'
+import { ActionCreators, StoreState } from '@/redux'
+import { actionCreators as estoqueAC } from '@/redux/estoque'
+import selectors from '@/selectors'
+import TableV5 from '@/components/tables/TableV5'
+
+interface DispatchProps {
+  getSaldos: (page: number) => void
+}
+
+interface EstoqueStateProps {
+  saldos: Array<EstoqueSaldo> | undefined
+  paginas: number
+  pending: boolean
+}
+
+export const EstoqueScreen = (props: EstoqueStateProps & DispatchProps): JSX.Element => {
+  const { saldos, getSaldos, pending } = props
+
+  useEffect(() => {
+    getSaldos(0)
+  }, [])
+
+  return (
+    <Page title={Strings.estoque.title}>
+      {pending && (
+                  <tr>
+                    <th scope="row" colSpan={7} className="text-center">
+                      {Strings.general.loading}
+                    </th>
+                  </tr>
+                )}
+      {!pending &&
+        <TableV5 saldos={saldos} headers={Strings.estoque.table.headers} />
+      }
+    </Page>
+  )
+}
+
+const mapStateToProps = (state: StoreState) => ({
+  saldos: selectors.estoque.getSaldos(state),
+  paginas: selectors.estoque.getPaginas(state),
+  pending: selectors.api.getPending(state, ActionCreators.estoque.getEstoqueSaldo),
+})
+
+const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
+  getSaldos: (page: number) => dispatch(estoqueAC.getEstoqueSaldo.call(page)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(EstoqueScreen)

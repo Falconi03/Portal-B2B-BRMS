@@ -1,0 +1,42 @@
+.page {
+  height: 100%;
+  width: 100%;
+
+  .brandLogo {
+    height: 24px;
+    margin-right: 5px;
+  }
+}
+
+/*
+ * Sidebar
+ */
+.sidebar {
+  bottom: 0;
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
+  left: 0;
+  padding: 48px 0 0; /* Height of navbar */
+  position: fixed;
+  top: 0;
+  z-index: 100; /* Behind the navbar */
+}
+
+/*
+ * Navbar
+ */
+
+.navbarBrand {
+  background-color: rgba(0, 0, 0, 0.25);
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.25);
+  font-size: 1rem;
+  padding-bottom: 0.75rem;
+  padding-top: 0.75rem;
+}
+
+/*
+ * Main
+ */
+ .main {
+  height: 100vh;
+  overflow: scroll;
+}

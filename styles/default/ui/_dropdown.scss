@@ -1,0 +1,17 @@
+.dropdown{
+    & .primary{
+       background-color: $primary;
+       border-radius: 5px;
+       &:hover{
+           background-color: $gray-700;
+       } 
+       &:active{
+            background-color: $gray-700;
+            border-radius: 5px;
+       }
+       &:focus{
+            background-color: $gray-700;
+            border-radius: 5px;
+       }
+    }
+}

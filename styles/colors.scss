@@ -1,0 +1,15 @@
+$black: rgb(0, 0, 0);
+$white: rgb(255, 255, 255);
+$grey: rgb(206, 212, 218);
+$primary: black;
+$secundary: #2d353c;
+$error: rgb(220, 53, 69);
+
+$standardTextColor: rgb(33, 37, 41);
+
+// Accessible by styled components
+:export {
+  error: $error;
+  primary: $primary;
+  standardTextColor: $standardTextColor;
+}

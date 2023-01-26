@@ -1,0 +1,71 @@
+.historico {
+    color: black;
+    background: white;
+    border-radius: 10px;
+    text-align: center;
+    padding: 0.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0;
+
+    & h1 {
+        font-weight: 400;
+
+        @include media-breakpoint-down(md) {
+            font-size: x-large;
+        }
+    }
+
+    & .produtos-historico {
+        @include media-breakpoint-down(md) {
+            font-size: xx-small;
+        }
+
+    }
+
+    & .total {
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+        font-weight: bold;
+        gap: 10px;
+
+        & a {
+            width: 100%;
+            text-align: end;
+        }
+
+        & button {
+            max-width: 15%;
+
+            @include media-breakpoint-down(md) {
+                max-width: 70%;
+            }
+        }
+    }
+}
+
+.input-number {
+    & input {
+        width: 25px;
+        text-align: center;
+    }
+
+    & button {
+        background: white;
+        border: 1px solid #767676;
+        padding: 2px 6px;
+        width: 25px;
+
+        @include media-breakpoint-down(md) {
+            display: none;
+        }
+    }
+
+    & input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+
+    }
+}

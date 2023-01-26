@@ -1,0 +1,44 @@
+.banco-img {
+    overflow: hidden;
+    margin: 1rem 0;
+    display: flex;
+    justify-content: center;
+
+    img {
+        max-width: 100%;
+        transition: all 0.5s;
+
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+}
+
+a {
+    &:hover {
+        color: #0b3778;
+    }
+}
+
+.senha {
+    padding: 1rem;
+    text-align: center;
+
+    h1 {
+        font-weight: 100;
+        @include media-breakpoint-down(lg) {
+            font-size: 1em;
+        }
+
+        @include media-breakpoint-down(sm) {
+            font-size: 0.5em;
+        }
+        b {
+            font-weight: 700;
+            color: green;
+        }
+    }
+
+    
+
+}

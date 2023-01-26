@@ -1,0 +1,16 @@
+.buttonWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: $spacer;
+
+  @media screen and (max-width: $tablet) {
+    align-items: center;
+    flex-direction: column-reverse;
+    gap: $spacer;
+
+    button {
+      width: 100% !important;
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "core": {
+    "workingDir": ".reg",
+    "actualDir": ".loki/reference",
+    "threshold": 0,
+    "addIgnore": true,
+    "ximgdiff": {
+      "invocationType": "client"
+    }
+  },
+  "plugins": {
+    "reg-keygen-git-hash-plugin": true,
+    "reg-publish-s3-plugin": {
+      "bucketName": "brms-nfe-reg-suit"
+    }
+  }
+}

@@ -71,8 +71,8 @@ const Market = (props: any) => {
                 setCount(count - 1)
             }
         }
-    } 
-    
+    }
+
     useEffect(() => {
         const timeout = setTimeout(carrosselNext, 5000)
         return () => {

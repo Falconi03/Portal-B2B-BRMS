@@ -37,7 +37,7 @@ const TopMenuNav = (props: any) => {
 					name={`${loja.cnpj} - ${loja.nome_fantasia}`}
 					className='dropdown primary w-100'
 					size='md'>
-					{infoCliente?.map((lojas: any , id: number) => {
+					{infoCliente?.map((lojas: any, id: number) => {
 						return (
 							<DropdownItem key={id} onClick={() => setLoja(lojas)}>{lojas.cnpj} - {lojas.nome_fantasia}</DropdownItem>
 						)
@@ -56,8 +56,15 @@ const TopMenuNav = (props: any) => {
 				))}
 			</div>
 			<div className="search">
-				<span>Busca: </span>
-				<input type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
+				{window.location.pathname === '/market' ?
+					<>
+						<span>Busca: </span>
+						<input type="text" value={search} onChange={(e) => {
+							setSearch(e.target.value)
+						}} />
+					</>
+					: null
+				}
 			</div>
 			<div className='cart'>
 				<Link to='/carrinho'>

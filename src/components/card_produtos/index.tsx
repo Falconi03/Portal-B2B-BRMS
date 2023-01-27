@@ -15,22 +15,19 @@ const CardProdutos = (props: any) => {
 
 
     const img = [
-        `http://clienteportal2.brms.com.br/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-1.jpg`,
-        `http://clienteportal2.brms.com.br/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-2.jpg`,
-        `http://clienteportal2.brms.com.br/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-3.jpg`,
-        `http://clienteportal2.brms.com.br/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-4.jpg`,
-        `http://clienteportal2.brms.com.br/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-5.jpg`,
-        `http://clienteportal2.brms.com.br/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-6.jpg`,
-        `http://clienteportal2.brms.com.br/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-7.jpg`,
-        `http://clienteportal2.brms.com.br/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-8.jpg`,
-        `http://clienteportal2.brms.com.br/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-9.jpg`,
-        `http://clienteportal2.brms.com.br/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-10.jpg`,
-        `http://clienteportal2.brms.com.br/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-11.jpg`,
-        `http://clienteportal2.brms.com.br/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-12.jpg`,
+        `http://${window.location.hostname}/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-1.jpg`,
+        `http://${window.location.hostname}/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-2.jpg`,
+        `http://${window.location.hostname}/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-3.jpg`,
+        `http://${window.location.hostname}/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-4.jpg`,
+        `http://${window.location.hostname}/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-5.jpg`,
+        `http://${window.location.hostname}/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-6.jpg`,
+        `http://${window.location.hostname}/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-7.jpg`,
+        `http://${window.location.hostname}/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-8.jpg`,
+        `http://${window.location.hostname}/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-9.jpg`,
+        `http://${window.location.hostname}/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-10.jpg`,
+        `http://${window.location.hostname}/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-11.jpg`,
+        `http://${window.location.hostname}/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-12.jpg`,
     ]
-
-
-
 
     return (
         <>
@@ -57,9 +54,9 @@ const CardProdutos = (props: any) => {
                                 trigger={
                                     <img
                                         className='img-principal'
-                                        src={`http://clienteportal2.brms.com.br/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-${imagem}.jpg`}
+                                        src={`http://${window.location.hostname}/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-${imagem}.jpg`}
                                         onError={({ currentTarget }) => {
-                                            currentTarget.src = 'http://clienteportal2.brms.com.br/images/produto-sem-imagem.jpg';
+                                            currentTarget.src = `http://${window.location.hostname}/images/produto-sem-imagem.jpg`;
                                         }} />} modal nested>
                                 {(close: any) =>
                                     <div className="card w-100 " style={{ height: '90vh' }} >
@@ -80,9 +77,9 @@ const CardProdutos = (props: any) => {
                                                 <img
                                                     className='img-principal w-auto'
                                                     style={{ height: '90vh' }}
-                                                    src={`http://clienteportal2.brms.com.br/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-${imagem}.jpg`}
+                                                    src={`http://${window.location.hostname}/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-${imagem}.jpg`}
                                                     onError={({ currentTarget }) => {
-                                                        currentTarget.src = 'http://clienteportal2.brms.com.br/images/produto-sem-imagem.jpg';
+                                                        currentTarget.src = `http://${window.location.hostname}/images/produto-sem-imagem.jpg`;
                                                     }} />
                                             </div>
 

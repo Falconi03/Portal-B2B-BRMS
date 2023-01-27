@@ -191,9 +191,9 @@ const Detalhes = (props: any) => {
                                         return (
                                             <tr key={id}>
                                                 <td>
-                                                    <img src={`http://clienteportal2.brms.com.br/images/produto/${produtoPedido.sku.substring(0, 17)}-1.jpg`} style={{ width: '50px', height: '50px' }} onError={({ currentTarget }) => {
+                                                    <img src={`http://${window.location.hostname}/images/produto/${produtoPedido.sku.substring(0, 17)}-1.jpg`} style={{ width: '50px', height: '50px' }} onError={({ currentTarget }) => {
                                                         currentTarget.onerror = null; // prevents looping
-                                                        currentTarget.src = "http://clienteportal2.brms.com.br/images/produto-sem-imagem.jpg";
+                                                        currentTarget.src = `http://${window.location.hostname}/images/produto-sem-imagem.jpg`;
                                                     }} />
                                                 </td>
                                                 <td>{produtoPedido.descricao}</td>
@@ -228,9 +228,9 @@ const Detalhes = (props: any) => {
                                                                             <tbody>
                                                                                 <tr style={{ verticalAlign: 'middle' }}>
                                                                                     <td>
-                                                                                        <img src={`http://clienteportal2.brms.com.br/images/produto/${produtoPedido.sku.substring(0, 17)}-1.jpg`} style={{ width: '50px', height: '50px' }} onError={({ currentTarget }) => {
+                                                                                        <img src={`http://${window.location.hostname}/images/produto/${produtoPedido.sku.substring(0, 17)}-1.jpg`} style={{ width: '50px', height: '50px' }} onError={({ currentTarget }) => {
                                                                                             currentTarget.onerror = null; // prevents looping
-                                                                                            currentTarget.src = "http://clienteportal2.brms.com.br/images/produto-sem-imagem.jpg";
+                                                                                            currentTarget.src = `http://${window.location.hostname}/images/produto-sem-imagem.jpg`;
                                                                                         }} />
                                                                                     </td>
                                                                                     <td>{produtoPedido.descricao}</td>

@@ -33,11 +33,6 @@ const CardProdutos = (props: any) => {
         <>
             {produto ?
                 <div key={produto?.id} className='card'>
-                    {/* {produto?.itens ?
-                        <CarrosselCard imagens={img}
-                            btnCircle={true}
-                            btnSeta={true} />
-                        : null} */}
                     {produto?.itens ?
                         <div className="card-img">
                             <div className="mini-images">
@@ -59,8 +54,8 @@ const CardProdutos = (props: any) => {
                                             currentTarget.src = `http://${window.location.hostname}/images/produto-sem-imagem.jpg`;
                                         }} />} modal nested>
                                 {(close: any) =>
-                                    <div className="card w-100 " style={{ height: '90vh' }} >
-                                        <div className="card-img">
+                                    <div className="card w-100 ">
+                                        <div className="img-popup">
                                         <PerfectScrollbar className={'app-sidebar-content'} options={{ suppressScrollX: true }} style={{ height: '90vh', width:'10%' }}>
                                                 <div className="mini-images w-100">
                                                     {img.map((imagem, id) => {
@@ -73,10 +68,8 @@ const CardProdutos = (props: any) => {
                                                     })}
                                                 </div>
                                             </PerfectScrollbar>
-                                            <div className="text-center" style={{ width: '90%' }}>
+                                            <div className="img-principal">
                                                 <img
-                                                    className='img-principal w-auto'
-                                                    style={{ height: '90vh' }}
                                                     src={`http://${window.location.hostname}/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-${imagem}.jpg`}
                                                     onError={({ currentTarget }) => {
                                                         currentTarget.src = `http://${window.location.hostname}/images/produto-sem-imagem.jpg`;

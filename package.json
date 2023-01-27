@@ -1,6 +1,6 @@
 {
-  "name": "nfe",
-  "repository": "https://bitbucket.org/leonardofukui/nfe/src",
+  "name": "portal",
+  "repository": "https://github.com/Falconi03/Portal-B2B-BRMS",
   "version": "1.0.1",
   "private": true,
   "scripts": {

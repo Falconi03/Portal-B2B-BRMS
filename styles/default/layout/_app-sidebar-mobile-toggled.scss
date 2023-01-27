@@ -10,7 +10,7 @@
 @keyframes appSidebarMobileBackdrop { from { background: transparent; } to { background: $app-sidebar-mobile-backdrop-bg; } }
 
 .app-sidebar-mobile-toggled {
-	@include media-breakpoint-down(md) {
+	@include media-breakpoint-down(lg) {
 		& .app-sidebar:not(.app-sidebar-end),
 		& .app-sidebar-bg:not(.app-sidebar-end) {
 			@if $enable-rtl {

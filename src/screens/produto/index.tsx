@@ -13,6 +13,9 @@ interface Produto {
     descricao: string,
     id: number,
     preco_lista: number,
+    descricao_produto: string,
+    ficha_tecnica: string,
+    detalhes: string,
     itens: [{
         descricao: string,
         codigo: string,
@@ -42,16 +45,6 @@ interface PropsInput {
     produto: Produto
 
 }
-
-
-
-const espec = {
-    caracteristica: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
-    f_tecnica: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)",
-    detalhes: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable."
-
-}
-
 
 
 const Input = (props: PropsInput) => {
@@ -119,8 +112,8 @@ const Produto = (props: any) => {
         }
     }
 
-    const [descricao, setDescricao] = useState(espec.caracteristica)
-    const [produto, setProduto] = useState<Produto>({ preco_lista: 0, itens: [{ descricao: '', codigo: '', itens: [{ descricao: '', codigo_base: '', saldo_2: 0, reserva: 0, reserva_brms: 0, linha: true }] }], codigo: '', id: 0, descricao: '' })
+    const [produto, setProduto] = useState<Produto>({ preco_lista: 0, descricao_produto: "", ficha_tecnica: "", detalhes: "", itens: [{ descricao: '', codigo: '', itens: [{ descricao: '', codigo_base: '', saldo_2: 0, reserva: 0, reserva_brms: 0, linha: true }] }], codigo: '', id: 0, descricao: '' })
+    const [descricao, setDescricao] = useState(produto.descricao_produto.length > 0 ? produto.descricao_produto : "Estamos trabalhando nisso")
     const [pedido, setPedido] = useState<Pedido>({ sku: '', quantidade: 0, preco: 0 })
 
 
@@ -245,9 +238,9 @@ const Produto = (props: any) => {
                     </div>
                     <div className="descricao">
                         <div className="btns-desc">
-                            <button onClick={() => setDescricao(espec.caracteristica)}>Descrição</button>
-                            <button onClick={() => setDescricao(espec.f_tecnica)}>Ficha Técnica</button>
-                            <button onClick={() => setDescricao(espec.detalhes)}>Detalhes</button>
+                            <button onClick={() => setDescricao(produto.descricao_produto.length > 0 ? produto.descricao_produto : "Estamos trabalhando nisso")}>Descrição</button>
+                            <button onClick={() => setDescricao(produto.ficha_tecnica.length > 0 ? produto.ficha_tecnica : "Estamos trabalhando nisso")}>Ficha Técnica</button>
+                            <button onClick={() => setDescricao(produto.detalhes.length > 0 ? produto.detalhes : "Estamos trabalhando nisso")}>Detalhes</button>
                         </div>
                         <div className="txt-desc">
                             {descricao}

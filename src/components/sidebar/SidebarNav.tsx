@@ -34,7 +34,7 @@ export default (props: { page: string }) => {
                             <div className="menu-icon">
                                 <i className="fa fa-store"></i>
                             </div>
-                            <div className="menu-text"><b>FAÇA SEU PEDIDO</b></div>
+                            <div className="menu-text"><b>FAÇA SEU ORÇAMENTO</b></div>
                         </a>
                         : null}
                 </div>

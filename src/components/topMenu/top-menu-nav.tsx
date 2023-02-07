@@ -22,6 +22,9 @@ const TopMenuNav = (props: any) => {
 		setActive(active === i ? -1 : i)
 	}
 
+	if(infoCliente.length === 1){
+		setLoja(infoCliente[0])
+	}
 
 	return (
 		<>

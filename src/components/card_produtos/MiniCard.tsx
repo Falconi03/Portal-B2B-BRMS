@@ -6,10 +6,18 @@ const CardProdutos = (props: any) => {
 
     const card = useRef(null)
     const produto = props.produto
-    const [img, setImg] = useState('')
+    const [img, setImg] = useState(<></>)
+    const [img2, setImg2] = useState(true)
+    
 
     useEffect(() => {
-        setImg(`http://${window.location.hostname}/images/produto/${produto.codigo}-1.jpg`)
+        setImg(
+            <img src={`http://${window.location.hostname}/images/produto/${produto.codigo}-1.jpg`} onError={({ currentTarget }) => {
+                setImg2(false)
+                currentTarget.onerror = null; // prevents looping
+                currentTarget.src = `http://${window.location.hostname}/images/produto-sem-imagem.jpg`;
+            }} />
+        )
     }, [produto])
 
     return (
@@ -17,13 +25,20 @@ const CardProdutos = (props: any) => {
             <div
                 key={produto.id}
                 className='mini-card'
-                ref={card} onMouseOver={() => setImg(`http://${window.location.hostname}/images/produto/${produto.codigo}-2.jpg`)}
-                onMouseOut={() => setImg(`http://${window.location.hostname}/images/produto/${produto.codigo}-1.jpg`)} >
-                <Link to={`/produto/${produto.id}`}>
-                    <img src={img} onError={({ currentTarget }) => {
+                ref={card} onMouseOver={() => img2 ? setImg(
+                    <img src={`http://${window.location.hostname}/images/produto/${produto.codigo}-2.jpg`} onError={({ currentTarget }) => {
+                        currentTarget.onerror = null; // prevents looping
+                        currentTarget.src = `http://${window.location.hostname}/images/produto/${produto.codigo}-1.jpg`;
+                    }} />
+                ) : null}
+                onMouseOut={() => setImg(
+                    <img src={`http://${window.location.hostname}/images/produto/${produto.codigo}-1.jpg`} onError={({ currentTarget }) => {
                         currentTarget.onerror = null; // prevents looping
                         currentTarget.src = `http://${window.location.hostname}/images/produto-sem-imagem.jpg`;
                     }} />
+                )} >
+                <Link to={`/produto/${produto.id}`}>
+                    {img}
                 </Link>
                 <div className='conteudo'>
                     <Link to={`/produto/${produto.id}`}>

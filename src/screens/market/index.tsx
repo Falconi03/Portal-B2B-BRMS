@@ -25,13 +25,15 @@ const Market = (props: any) => {
     const [pageItens, SetPageItens] = useState(initialValues)
     const [num, setNum] = useState([0, 20])
     const prodFiltardos: { id: number, descricao: string, codigo: string }[] = []
+    const idProdutos:number[] = []
     const [prodCarrossel, setProdCarrossel] = useState([0])
 
 
     produtos.map((item: { descricao: '', codigo: '', id: 0 }) => {
         if (item.descricao.toUpperCase().includes(search.toUpperCase()) || item.codigo.includes(search)) {
             return (
-                prodFiltardos.push(item)
+                prodFiltardos.push(item),
+                idProdutos.push(item.id)
             )
         }
     })
@@ -120,8 +122,8 @@ const Market = (props: any) => {
         const numAleatorio: number[] = []
         for (; ;) {
             if (numAleatorio.length < 20) {
-                let aleatorio = Math.random() * ((1044 + 1) - 1) + 1
-                aleatorio = parseInt(String(aleatorio))
+                let aleatorio = Math.random() * ((idProdutos.length + 1) - 1) + 1
+                aleatorio = idProdutos[parseInt(String(aleatorio))]
 
 
 
@@ -132,6 +134,7 @@ const Market = (props: any) => {
         }
         setProdCarrossel(numAleatorio)
     }
+
 
     return (
         <MarketPage>
@@ -146,7 +149,7 @@ const Market = (props: any) => {
                                 progressBar={true}
                                 link={false} />
                         </div>
-                        {/* <h1 style={{ borderBottom: '1px solid white' }}>OS MAIS VENDIDOS</h1>
+                        <h1 style={{ borderBottom: '1px solid white' }}>OS MAIS VENDIDOS</h1>
                         <div className='d-flex' >
                             <div className='produtos-carrossel' ref={carrossel}>
                                 {prodCarrossel.map((num) => {
@@ -167,7 +170,7 @@ const Market = (props: any) => {
                             <div className='btn-carrossel-produto' >
                                 <button onClick={carrosselNext}><i className="fa fa-angles-right"></i></button>
                             </div>
-                        </div> */}
+                        </div>
                         <h1 style={{ borderBottom: '1px solid white' }} ref={prod}>TODOS OS PRODUTOS</h1>
                         <div className='produtos'>
                             {pageItens.map((item, id) => {

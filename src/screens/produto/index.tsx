@@ -192,46 +192,48 @@ const Produto = (props: any) => {
                             </thead>
                             <tbody>
                                 {produto.itens.map((cor, corID: number) => {
-                                    return (
-                                        <React.Fragment key={corID}>
-                                            <tr className="estoque-input">
-                                                <td style={{ whiteSpace: 'pre' }}>{`${cor.descricao}: `}</td>
-                                                {especTam.map((tam, id) => {
-                                                    let estoque: Estoque | undefined = { descricao: '', codigo_base: '', saldo_2: 0, reserva: 0, reserva_brms: 0, linha: true }
-                                                    if (estoque = cor.itens.find((estoque) => tam === estoque.descricao)) {
-                                                        return (
-                                                            <td key={id}>
-                                                                <Input carrinho={carrinho} estoque={estoque} setPedido={setPedido} produto={produto} />
-                                                            </td>
-                                                        )
-                                                    } else {
-                                                        return (
-                                                            <td key={id}>
-                                                                <input
-                                                                    type="number"
-                                                                    disabled />
-                                                            </td>
-                                                        )
-                                                    }
-                                                })}
-                                            </tr>
-                                            <tr className="estoque" style={{ backgroundColor: "#0000000d" }}>
-                                                <td>Estoque: </td>
-                                                {especTam.map((tam, id) => {
-                                                    let estoque: Estoque | undefined = { descricao: '', codigo_base: '', saldo_2: 0, reserva: 0, reserva_brms: 0, linha: true }
-                                                    if (estoque = cor.itens.find((estoque) => tam === estoque.descricao)) {
-                                                        return (
-                                                            <td key={id}>{estoque.saldo_2 - estoque.reserva - estoque.reserva_brms}</td>
-                                                        )
-                                                    } else {
-                                                        return (
-                                                            <td key={id}></td>
-                                                        )
-                                                    }
-                                                })}
-                                            </tr>
-                                        </React.Fragment>
-                                    )
+                                    if (cor.itens.length > 0) {
+                                        return (
+                                            <React.Fragment key={corID}>
+                                                <tr className="estoque-input">
+                                                    <td style={{ whiteSpace: 'pre' }}>{`${cor.descricao}: `}</td>
+                                                    {especTam.map((tam, id) => {
+                                                        let estoque: Estoque | undefined = { descricao: '', codigo_base: '', saldo_2: 0, reserva: 0, reserva_brms: 0, linha: true }
+                                                        if (estoque = cor.itens.find((estoque) => tam === estoque.descricao)) {
+                                                            return (
+                                                                <td key={id}>
+                                                                    <Input carrinho={carrinho} estoque={estoque} setPedido={setPedido} produto={produto} />
+                                                                </td>
+                                                            )
+                                                        } else {
+                                                            return (
+                                                                <td key={id}>
+                                                                    <input
+                                                                        type="number"
+                                                                        disabled />
+                                                                </td>
+                                                            )
+                                                        }
+                                                    })}
+                                                </tr>
+                                                <tr className="estoque" style={{ backgroundColor: "#0000000d" }}>
+                                                    <td>Estoque: </td>
+                                                    {especTam.map((tam, id) => {
+                                                        let estoque: Estoque | undefined = { descricao: '', codigo_base: '', saldo_2: 0, reserva: 0, reserva_brms: 0, linha: true }
+                                                        if (estoque = cor.itens.find((estoque) => tam === estoque.descricao)) {
+                                                            return (
+                                                                <td key={id}>{estoque.saldo_2 - estoque.reserva - estoque.reserva_brms}</td>
+                                                            )
+                                                        } else {
+                                                            return (
+                                                                <td key={id}></td>
+                                                            )
+                                                        }
+                                                    })}
+                                                </tr>
+                                            </React.Fragment>
+                                        )
+                                    }
                                 })}
                             </tbody>
                         </table>

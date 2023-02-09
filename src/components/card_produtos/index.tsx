@@ -8,10 +8,23 @@ const semImg = require('@/../styles/imagem/produto-sem-imagem.jpg')
 
 const CardProdutos = (props: any) => {
 
+    const produto = props.produto
     const [corProduto, setCorProduto] = useState(0)
     const [imagem, setImagem] = useState(1)
+    const [selectImg, setSelectImg] = useState(0)
+    const itensId: number[] = []
 
-    const produto = props.produto
+    useEffect(() => {
+        produto?.itens.map((cor: any, id: number) => {
+            if (cor.itens.length > 0) {
+                itensId.push(id)
+            }
+            if (itensId.length > 0) {
+                setCorProduto(itensId[0])
+            }
+        })
+
+    }, [produto])
 
 
     const img = [
@@ -38,9 +51,14 @@ const CardProdutos = (props: any) => {
                             <div className="mini-images">
                                 {img.map((imagem, id) => {
                                     return (
-                                        <img className={'mini-img ' + imagem} src={imagem} key={id} onMouseOver={() => setImagem(id + 1)} onError={({ currentTarget }) => {
-                                            currentTarget.className = 'd-none';
-                                        }} />
+                                        <img className={'mini-img ' + imagem} src={imagem} key={id} onMouseOver={() => {
+                                            setImagem(id + 1)
+                                            setSelectImg(id)
+                                        }}
+                                            onError={({ currentTarget }) => {
+                                                currentTarget.className = 'd-none';
+                                            }}
+                                            style={{ border: selectImg === id ? '1px solid #e77600' : '1px solid #00000020', boxShadow: selectImg === id ? '0 0 3px 2px #e4791180' : 'none' }} />
                                     )
                                 })}
                             </div>
@@ -55,13 +73,18 @@ const CardProdutos = (props: any) => {
                                 {(close: any) =>
                                     <div className="card w-100 ">
                                         <div className="img-popup">
-                                        <PerfectScrollbar className={'app-sidebar-content'} options={{ suppressScrollX: true }} style={{ height: '90vh', width:'15%', paddingLeft: '10px' }}>
+                                            <PerfectScrollbar className={'app-sidebar-content'} options={{ suppressScrollX: true }} style={{ height: '90vh', width: '7%', paddingLeft: '5px', paddingRight: '5px' }}>
                                                 <div className="mini-images w-100">
                                                     {img.map((imagem, id) => {
                                                         return (
-                                                            <img className={'mini-img ' + imagem} src={imagem} key={id} onMouseOver={() => setImagem(id + 1)} onError={({ currentTarget }) => {
-                                                                currentTarget.className = 'd-none';
-                                                            }} />
+                                                            <img className={'mini-img ' + imagem} src={imagem} key={id} onMouseOver={() => {
+                                                                setImagem(id + 1)
+                                                                setSelectImg(id)
+                                                            }}
+                                                                onError={({ currentTarget }) => {
+                                                                    currentTarget.className = 'd-none';
+                                                                }}
+                                                                style={{ border: selectImg === id ? '1px solid #e77600' : '1px solid #00000020', boxShadow: selectImg === id ? '0 0 3px 2px #e4791180' : 'none' }} />
                                                         )
                                                     })}
                                                 </div>
@@ -71,7 +94,8 @@ const CardProdutos = (props: any) => {
                                                     src={`https://${window.location.hostname}/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-${imagem}.jpg`}
                                                     onError={({ currentTarget }) => {
                                                         currentTarget.src = `https://${window.location.hostname}/images/produto-sem-imagem.jpg`;
-                                                    }} />
+                                                    }}
+                                                />
                                             </div>
 
                                         </div>
@@ -84,9 +108,11 @@ const CardProdutos = (props: any) => {
                     <div className='conteudo'>
                         <div className="buttons">
                             {produto?.itens.map((cor: any, id: number) => {
-                                return (
-                                    <button key={id} onClick={() => setCorProduto(id)}>{cor.descricao}</button>
-                                )
+                                if (cor.itens.length > 0) {
+                                    return (
+                                        <button key={id} onClick={() => setCorProduto(id)}>{cor.descricao}</button>
+                                    )
+                                }
                             })}
                         </div>
                         <Link to={`/produto/${produto?.id}`}>

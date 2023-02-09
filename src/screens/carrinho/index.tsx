@@ -123,9 +123,9 @@ const Itens = (props: any) => {
         return (
             <>
                 <td>
-                    <img src={`http://${window.location.hostname}/images/produto/${produtoCarrinho.sku.substring(0, 17)}-1.jpg`} style={{ width: '50px', height: '50px' }} onError={({ currentTarget }) => {
+                    <img src={`https://${window.location.hostname}/images/produto/${produtoCarrinho.sku.substring(0, 17)}-1.jpg`} style={{ width: '50px', height: '50px' }} onError={({ currentTarget }) => {
                         currentTarget.onerror = null; // prevents looping
-                        currentTarget.src = `http://${window.location.hostname}/images/produto-sem-imagem.jpg`;
+                        currentTarget.src = `https://${window.location.hostname}/images/produto-sem-imagem.jpg`;
                     }} />
                 </td>
                 <td>{produtoCarrinho.descricao}</td>
@@ -523,9 +523,9 @@ const Carrinho = (props: any) => {
                                                                         return (
                                                                             <tr key={id}>
                                                                                 <td>
-                                                                                    <img src={`http://${window.location.hostname}/images/produto/${produtoCarrinho.sku.substring(0, 17)}-1.jpg`} style={{ width: '50px', height: '50px' }} onError={({ currentTarget }) => {
+                                                                                    <img src={`https://${window.location.hostname}/images/produto/${produtoCarrinho.sku.substring(0, 17)}-1.jpg`} style={{ width: '50px', height: '50px' }} onError={({ currentTarget }) => {
                                                                                         currentTarget.onerror = null; // prevents looping
-                                                                                        currentTarget.src = `http://${window.location.hostname}/images/produto-sem-imagem.jpg`;
+                                                                                        currentTarget.src = `https://${window.location.hostname}/images/produto-sem-imagem.jpg`;
                                                                                     }} />
                                                                                 </td>
                                                                                 <td>{produtoCarrinho.descricao}</td>

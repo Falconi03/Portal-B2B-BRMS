@@ -15,18 +15,18 @@ const CardProdutos = (props: any) => {
 
 
     const img = [
-        `http://${window.location.hostname}/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-1.jpg`,
-        `http://${window.location.hostname}/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-2.jpg`,
-        `http://${window.location.hostname}/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-3.jpg`,
-        `http://${window.location.hostname}/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-4.jpg`,
-        `http://${window.location.hostname}/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-5.jpg`,
-        `http://${window.location.hostname}/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-6.jpg`,
-        `http://${window.location.hostname}/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-7.jpg`,
-        `http://${window.location.hostname}/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-8.jpg`,
-        `http://${window.location.hostname}/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-9.jpg`,
-        `http://${window.location.hostname}/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-10.jpg`,
-        `http://${window.location.hostname}/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-11.jpg`,
-        `http://${window.location.hostname}/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-12.jpg`,
+        `https://${window.location.hostname}/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-1.jpg`,
+        `https://${window.location.hostname}/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-2.jpg`,
+        `https://${window.location.hostname}/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-3.jpg`,
+        `https://${window.location.hostname}/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-4.jpg`,
+        `https://${window.location.hostname}/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-5.jpg`,
+        `https://${window.location.hostname}/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-6.jpg`,
+        `https://${window.location.hostname}/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-7.jpg`,
+        `https://${window.location.hostname}/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-8.jpg`,
+        `https://${window.location.hostname}/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-9.jpg`,
+        `https://${window.location.hostname}/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-10.jpg`,
+        `https://${window.location.hostname}/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-11.jpg`,
+        `https://${window.location.hostname}/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-12.jpg`,
     ]
 
     return (
@@ -49,9 +49,9 @@ const CardProdutos = (props: any) => {
                                 trigger={
                                     <img
                                         className='img-principal'
-                                        src={`http://${window.location.hostname}/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-${imagem}.jpg`}
+                                        src={`https://${window.location.hostname}/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-${imagem}.jpg`}
                                         onError={({ currentTarget }) => {
-                                            currentTarget.src = `http://${window.location.hostname}/images/produto-sem-imagem.jpg`;
+                                            currentTarget.src = `https://${window.location.hostname}/images/produto-sem-imagem.jpg`;
                                         }} />} modal nested>
                                 {(close: any) =>
                                     <div className="card w-100 ">
@@ -70,9 +70,9 @@ const CardProdutos = (props: any) => {
                                             </PerfectScrollbar>
                                             <div className="img-principal">
                                                 <img
-                                                    src={`http://${window.location.hostname}/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-${imagem}.jpg`}
+                                                    src={`https://${window.location.hostname}/images/produto/${produto.codigo + produto.itens[corProduto].codigo}-${imagem}.jpg`}
                                                     onError={({ currentTarget }) => {
-                                                        currentTarget.src = `http://${window.location.hostname}/images/produto-sem-imagem.jpg`;
+                                                        currentTarget.src = `https://${window.location.hostname}/images/produto-sem-imagem.jpg`;
                                                     }} />
                                             </div>
 

@@ -144,9 +144,9 @@ const Market = (props: any) => {
                                 btnSeta={true}
                                 btnCircle={true}
                                 progressBar={true}
-                                link={true} />
+                                link={false} />
                         </div>
-                        <h1 style={{ borderBottom: '1px solid white' }}>OS MAIS VENDIDOS</h1>
+                        {/* <h1 style={{ borderBottom: '1px solid white' }}>OS MAIS VENDIDOS</h1>
                         <div className='d-flex' >
                             <div className='produtos-carrossel' ref={carrossel}>
                                 {prodCarrossel.map((num) => {
@@ -167,7 +167,7 @@ const Market = (props: any) => {
                             <div className='btn-carrossel-produto' >
                                 <button onClick={carrosselNext}><i className="fa fa-angles-right"></i></button>
                             </div>
-                        </div>
+                        </div> */}
                         <h1 style={{ borderBottom: '1px solid white' }} ref={prod}>TODOS OS PRODUTOS</h1>
                         <div className='produtos'>
                             {pageItens.map((item, id) => {

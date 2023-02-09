@@ -12,10 +12,10 @@ const CardProdutos = (props: any) => {
 
     useEffect(() => {
         setImg(
-            <img src={`http://${window.location.hostname}/images/produto/${produto.codigo}-1.jpg`} onError={({ currentTarget }) => {
+            <img src={`https://${window.location.hostname}/images/produto/${produto.codigo}-1.jpg`} onError={({ currentTarget }) => {
                 setImg2(false)
                 currentTarget.onerror = null; // prevents looping
-                currentTarget.src = `http://${window.location.hostname}/images/produto-sem-imagem.jpg`;
+                currentTarget.src = `https://${window.location.hostname}/images/produto-sem-imagem.jpg`;
             }} />
         )
     }, [produto])
@@ -26,15 +26,15 @@ const CardProdutos = (props: any) => {
                 key={produto.id}
                 className='mini-card'
                 ref={card} onMouseOver={() => img2 ? setImg(
-                    <img src={`http://${window.location.hostname}/images/produto/${produto.codigo}-2.jpg`} onError={({ currentTarget }) => {
+                    <img src={`https://${window.location.hostname}/images/produto/${produto.codigo}-2.jpg`} onError={({ currentTarget }) => {
                         currentTarget.onerror = null; // prevents looping
-                        currentTarget.src = `http://${window.location.hostname}/images/produto/${produto.codigo}-1.jpg`;
+                        currentTarget.src = `https://${window.location.hostname}/images/produto/${produto.codigo}-1.jpg`;
                     }} />
                 ) : null}
                 onMouseOut={() => setImg(
-                    <img src={`http://${window.location.hostname}/images/produto/${produto.codigo}-1.jpg`} onError={({ currentTarget }) => {
+                    <img src={`https://${window.location.hostname}/images/produto/${produto.codigo}-1.jpg`} onError={({ currentTarget }) => {
                         currentTarget.onerror = null; // prevents looping
-                        currentTarget.src = `http://${window.location.hostname}/images/produto-sem-imagem.jpg`;
+                        currentTarget.src = `https://${window.location.hostname}/images/produto-sem-imagem.jpg`;
                     }} />
                 )} >
                 <Link to={`/produto/${produto.id}`}>

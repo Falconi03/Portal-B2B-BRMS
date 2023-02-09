@@ -90,7 +90,7 @@ const Carrossel = (props: CarrosselProps) => {
                 })}
                 <div className='carrossel' style={{ display: timeCarrossel ? '' : 'none', height: carrossel.current?.clientHeight, width: carrossel.current?.clientWidth }}>
                     {props.btnSeta ? <button className='btn-carrossel' onClick={prev} style={{ display: disabled ? 'none' : '' }}><i className="fa fa-angles-left"></i></button> : null}
-                    {props.link ? <Link to={`/produto/${imagens[count].link}`} className='link' /> : null}
+                    {props.link ? <Link to={`/produto/${imagens[count].link}`} className='link' /> : <Link to='#' className='link' />}
                     {props.btnSeta ? <button className='btn-carrossel' onClick={next} style={{ display: disabled ? 'none' : '' }}><i className="fa fa-angles-right"></i></button> : null}
                     {props.progressBar ?
                         <div className="container">

@@ -2,12 +2,12 @@ const path = require('path') // eslint-disable-line
 const webpack = require('webpack') // eslint-disable-line @typescript-eslint/no-var-requires
 
 const PORT = process.env.PORT || 8003
-const HOST = process.env.HOST || 'clienteportal2.brms.com.br'
+const HOST = process.env.HOST || 'clienteportal.brms.com.br'
 
 const webpackBase = {
     entry: [
         'react-hot-loader/patch', // activate HMR for React
-        `webpack-dev-server/client?http://clienteportal2.brms.com.br`,
+        `webpack-dev-server/client?https://clienteportal.brms.com.br`,
         path.resolve(__dirname, 'src', 'app.tsx'),
     ],
     devtool: 'source-map',
@@ -15,7 +15,7 @@ const webpackBase = {
     output: {
         filename: 'build.min.js',
         path: path.resolve(__dirname, '..', '..', 'frontend', 'nfe', 'static', 'build'),
-        publicPath: `http://${HOST}/`,
+        publicPath: `https://${HOST}/`,
         /* publicPath: `http://${HOST}:${PORT}/`, */
         //publicPath: './public/'
     },
@@ -163,7 +163,7 @@ const webpackBase = {
         headers: {
             'Access-Control-Allow-Origin': '*',
         },
-        host: 'clienteportal2.brms.com.br',
+        host: 'clienteportal.brms.com.br',
         /* host: '64.225.23.255', */
         port: 8003,
         contentBase: path.resolve(__dirname, '..', '..', 'frontend', 'nfe', 'static'),
@@ -171,7 +171,7 @@ const webpackBase = {
         disableHostCheck: true,
         proxy: {
             context: ['/static/css', '/static/fonts'],
-            target: `http://${HOST}`,
+            target: `https://${HOST}`,
             /* target: `http://${HOST}:${PORT}`, */
         },
     },

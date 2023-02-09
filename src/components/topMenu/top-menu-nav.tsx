@@ -22,18 +22,26 @@ const TopMenuNav = (props: any) => {
 		setActive(active === i ? -1 : i)
 	}
 
-	if(infoCliente.length === 1){
+	if (infoCliente.length === 1) {
 		setLoja(infoCliente[0])
 	}
 
 	return (
 		<>
 			<div className='voltar'>
-				<Link to='/market'>
-					<span>
-						<i className="fa fa-angles-left"></i> <span> Loja</span>
-					</span>
-				</Link>
+				{window.location.pathname === '/market' ?
+					<Link to='/home'>
+						<span>
+							<i className="fa fa-angles-left"></i> <span> Portal</span>
+						</span>
+					</Link>
+					:
+					<Link to='/market'>
+						<span>
+							<i className="fa fa-angles-left"></i> <span> Loja</span>
+						</span>
+					</Link>
+				}
 			</div>
 			<div className='esc-loja'>
 				<DropDown

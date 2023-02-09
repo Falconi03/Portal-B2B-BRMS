@@ -43,32 +43,43 @@ const MarketPage = ({ infoClienteProp, getSaldos, children }: PageProps): JSX.El
             <div className='app-sidebar market'>
               <SidebarNew page='market' />
             </div>
-            <div className='search-voltar'>
+            <div className='search-voltar' style={{ justifyContent: window.location.pathname !== '/market' ? 'center' : 'space-between' }}>
               <div className='voltar'>
-                <Link to='/market'>
-                  <span>
-                    <i className="fa fa-angles-left"></i> <span> Loja</span>
-                  </span>
-                </Link>
+                {window.location.pathname === '/market' ?
+                  <Link to='/home'>
+                    <span>
+                      <i className="fa fa-angles-left"></i> <span> Portal</span>
+                    </span>
+                  </Link>
+                  :
+                  <Link to='/market'>
+                    <span>
+                      <i className="fa fa-angles-left"></i> <span> Loja</span>
+                    </span>
+                  </Link>
+                }
               </div>
               <div className="search">
-                <span>Busca: </span>
-                <input type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
+                {window.location.pathname === '/market' ?
+                  <>
+                    <span>Busca: </span>
+                    <input type="text" value={search} onChange={(e) => { setSearch(e.target.value) }} />
+                  </>
+                  : null
+                }
               </div>
             </div>
-            <div className='search-voltar'>
-              <div style={{ width: '100%', padding:'2rem' }}>
-                <DropDown
-                  name={`${loja.cnpj} - ${loja.nome_fantasia}`}
-                  className='dropdown primary w-100'
-                  size='md'>
-                  {infoCliente?.map((lojas: any, id: number) => {
-                    return (
-                      <DropdownItem key={id} onClick={() => setLoja(lojas)} >{lojas.cnpj} - {lojas.nome_fantasia}</DropdownItem>
-                    )
-                  })}
-                </DropDown>
-              </div>
+            <div className='escolher-loja'>
+              <DropDown
+                name={`${loja.cnpj} - ${loja.nome_fantasia}`}
+                className='dropdown primary w-100'
+                size='md'>
+                {infoCliente?.map((lojas: any, id: number) => {
+                  return (
+                    <DropdownItem key={id} onClick={() => setLoja(lojas)} >{lojas.cnpj} - {lojas.nome_fantasia}</DropdownItem>
+                  )
+                })}
+              </DropDown>
             </div>
             <div style={{ marginLeft: '0' }} className='app-content'>
               {children}

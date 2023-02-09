@@ -40,7 +40,6 @@ const CardProdutos = (props: any) => {
                                     return (
                                         <img className={'mini-img ' + imagem} src={imagem} key={id} onMouseOver={() => setImagem(id + 1)} onError={({ currentTarget }) => {
                                             currentTarget.className = 'd-none';
-
                                         }} />
                                     )
                                 })}
@@ -62,7 +61,6 @@ const CardProdutos = (props: any) => {
                                                         return (
                                                             <img className={'mini-img ' + imagem} src={imagem} key={id} onMouseOver={() => setImagem(id + 1)} onError={({ currentTarget }) => {
                                                                 currentTarget.className = 'd-none';
-
                                                             }} />
                                                         )
                                                     })}

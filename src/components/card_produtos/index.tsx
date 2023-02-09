@@ -55,7 +55,7 @@ const CardProdutos = (props: any) => {
                                 {(close: any) =>
                                     <div className="card w-100 ">
                                         <div className="img-popup">
-                                        <PerfectScrollbar className={'app-sidebar-content'} options={{ suppressScrollX: true }} style={{ height: '90vh', width:'10%' }}>
+                                        <PerfectScrollbar className={'app-sidebar-content'} options={{ suppressScrollX: true }} style={{ height: '90vh', width:'15%', paddingLeft: '10px' }}>
                                                 <div className="mini-images w-100">
                                                     {img.map((imagem, id) => {
                                                         return (

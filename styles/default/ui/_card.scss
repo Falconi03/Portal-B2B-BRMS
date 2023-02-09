@@ -56,13 +56,14 @@
 
                 .mini-img {
                     width: 100%;
-                    border: 1px solid #888;
+                    border: 1px solid #00000020;
+                    border-radius: 30%;
                 }
             }
         }
 
         .img-principal {
-            width: 90%;
+            width: 85%;
             text-align: center;
 
             @include media-breakpoint-down(lg) {

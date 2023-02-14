@@ -3,93 +3,160 @@
     background-color: white;
     border-radius: 10px;
     overflow: hidden;
+    display: flex;
+    flex-direction: row;
 
     @include media-breakpoint-down(md) {
         width: 100%;
     }
 
-    .card-img {
+    .mini-images {
+        width: 10%;
         display: flex;
-        align-items: center;
+        flex-direction: column;
+        gap: 10px;
+        padding-top: 10px;
+        padding-left: 3px;
+        padding-right: 3px;
 
-        .mini-images {
-            width: 10%;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            padding-top: 10px;
-            padding-left: 3px;
-            padding-right: 3px;
-
-            @include media-breakpoint-down(lg) {
-                width: 15%;
-            }
-
-            .mini-img {
-                width: 100%;
-                border: 1px solid #00000020;
-                border-radius: 30%;
-                &:hover{
-                    border: 1px solid #e77600;
-                    box-shadow: 0 0 3px 2px #e4791180;
-                }
-            }
+        @include media-breakpoint-down(lg) {
+            width: 15%;
         }
 
-        .img-principal {
-            width: 90%;
+        .mini-img {
+            width: 100%;
+            border: 1px solid #00000020;
+            border-radius: 30%;
 
-            @include media-breakpoint-down(lg) {
-                width: 85%;
-            }
-
-            @include media-breakpoint-up(md) {
-                height: max-content;
+            &:hover {
+                border: 1px solid #e77600;
+                box-shadow: 0 0 3px 2px #e4791180;
             }
         }
     }
 
+    .card-produto {
+        width: 90%;
+        .card-img {
+            display: flex;
+            align-items: center;
+
+
+
+            .img-principal {
+                width: 100%;
+
+                @include media-breakpoint-down(lg) {
+                    width: 85%;
+                }
+
+                @include media-breakpoint-up(md) {
+                    height: max-content;
+                }
+            }
+        }
+
+        
+        .conteudo {
+            color: $black;
+            padding: 1rem;
+            
+            .buttons {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 1rem;
+                margin-bottom: 1rem;
+                
+                button {
+                    border: 1px solid #888;
+                    background: transparent;
+                    border-radius: 6px;
+                    color: #888;
+                    font-weight: 100;
+                }
+            }
+            
+            a {
+                text-decoration: none;
+            }
+            
+            h1 {
+                @include media-breakpoint-down(md) {
+                    font-size: medium;
+                    font-weight: bold;
+                }
+            }
+
+
+            .titulo {
+                font-weight: 400;
+                text-align: center;
+                padding: 1rem 0;
+            }
+            
+            .preco {
+                display: flex;
+                flex-direction: column;
+                
+                @include media-breakpoint-down(md) {
+                    font-size: small
+                }
+
+                .valores {
+                    display: flex;
+
+                    .valores-texto {
+                        width: 70%;
+                    }
+                }
+
+            }
+        }
+    }
+    
     .img-popup {
         display: flex;
-
+    
         .app-sidebar-content {
             width: auto;
             height: 90vh;
-
+    
             @include media-breakpoint-down(lg) {
                 display: none;
             }
-
+    
             .mini-images {
                 width: 100%;
                 display: flex;
                 flex-direction: column;
                 gap: 10px;
                 padding-top: 10px;
-
+    
                 .mini-img {
                     width: 100%;
                     border: 1px solid #00000020;
                     border-radius: 30%;
-                    &:hover{
+    
+                    &:hover {
                         border: 1px solid #e77600;
                         box-shadow: 0 0 3px 2px #e4791180;
                     }
                 }
             }
         }
-
+    
         .img-principal {
             width: 90%;
             text-align: center;
-
+    
             @include media-breakpoint-down(lg) {
                 width: 100%;
             }
-
+    
             img {
                 width: 100%;
-
+    
                 @include media-breakpoint-up(lg) {
                     width: auto;
                     height: 90vh;
@@ -97,64 +164,8 @@
             }
         }
     }
-
-    .conteudo {
-        color: $black;
-        padding: 1rem;
-
-        .buttons {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 1rem;
-
-            button {
-                border: 1px solid #888;
-                background: transparent;
-                border-radius: 6px;
-                color: #888;
-                font-weight: 100;
-            }
-        }
-
-        a {
-            text-decoration: none;
-        }
-
-        h1 {
-            @include media-breakpoint-down(md) {
-                font-size: medium;
-                font-weight: bold;
-            }
-        }
-
-
-        .titulo {
-            font-weight: 400;
-            text-align: center;
-            padding: 1rem 0;
-        }
-
-        .preco {
-            display: flex;
-            flex-direction: column;
-
-            @include media-breakpoint-down(md) {
-                font-size: small
-            }
-
-            .valores {
-                display: flex;
-
-                .valores-texto {
-                    width: 70%;
-                }
-            }
-
-        }
-    }
 }
+
 
 .mini-card {
     width: 200px;

@@ -46,22 +46,22 @@ const CardProdutos = (props: any) => {
         <>
             {produto ?
                 <div key={produto?.id} className='card'>
-                    {produto?.itens ?
+                    <div className="mini-images">
+                        {img.map((imagem, id) => {
+                            return (
+                                <img className={'mini-img ' + imagem} src={imagem} key={id} onMouseOver={() => {
+                                    setImagem(id + 1)
+                                    setSelectImg(id)
+                                }}
+                                    onError={({ currentTarget }) => {
+                                        currentTarget.className = 'd-none';
+                                    }}
+                                    style={{ border: selectImg === id ? '1px solid #e77600' : '1px solid #00000020', boxShadow: selectImg === id ? '0 0 3px 2px #e4791180' : 'none' }} />
+                            )
+                        })}
+                    </div>
+                    <div className="card-produto">
                         <div className="card-img">
-                            <div className="mini-images">
-                                {img.map((imagem, id) => {
-                                    return (
-                                        <img className={'mini-img ' + imagem} src={imagem} key={id} onMouseOver={() => {
-                                            setImagem(id + 1)
-                                            setSelectImg(id)
-                                        }}
-                                            onError={({ currentTarget }) => {
-                                                currentTarget.className = 'd-none';
-                                            }}
-                                            style={{ border: selectImg === id ? '1px solid #e77600' : '1px solid #00000020', boxShadow: selectImg === id ? '0 0 3px 2px #e4791180' : 'none' }} />
-                                    )
-                                })}
-                            </div>
                             <Popup
                                 trigger={
                                     <img
@@ -104,43 +104,44 @@ const CardProdutos = (props: any) => {
                                 }
                             </Popup>
                         </div>
-                        : null}
-                    <div className='conteudo'>
-                        <div className="buttons">
-                            {produto?.itens.map((cor: any, id: number) => {
-                                if (cor.itens.length > 0) {
-                                    return (
-                                        <button key={id} onClick={() => {
-                                            setCorProduto(id)
-                                            setImagem(1)
-                                            setSelectImg(0)
-                                        }}>{cor.descricao}</button>
-                                    )
-                                }
-                            })}
-                        </div>
-                        <Link to={`/produto/${produto?.id}`}>
-                            <h1 className="titulo">{produto?.descricao}</h1>
-                        </Link>
-                        <div className='preco'>
-                            <span className="valores">
-                                <p className="valores-texto">Valor do Produto: </p><p>R${String(produto.preco_lista?.toFixed(2)).replace('.', ',')}</p>
-                            </span>
-                            <span className="valores">
-                                <p className="valores-texto">Valor do ICMS ST: </p><p>R${String(0.0.toFixed(2)).replace('.', ',')}</p>
-                            </span>
-                            <span className="valores">
-                                <p className="valores-texto">Valor do IPI: </p><p>R${String(0.0.toFixed(2)).replace('.', ',')}</p>
-                            </span>
-                            <span className="valores">
-                                <p className="valores-texto"><b>Valor do Produto + Impostos: </b></p><p><b>R${String(produto.preco_lista?.toFixed(2)).replace('.', ',')}</b></p>
-                            </span>
-                            <span className="valores">
-                                <p className="valores-texto"><b>Preço Sugerido: </b></p><p><b>R${String(produto.preco_sugerido?.toFixed(2)).replace('.', ',')}</b></p>
-                            </span>
+                        <div className='conteudo'>
+                            <div className="buttons">
+                                {produto?.itens.map((cor: any, id: number) => {
+                                    if (cor.itens.length > 0) {
+                                        return (
+                                            <button key={id} onClick={() => {
+                                                setCorProduto(id)
+                                                setImagem(1)
+                                                setSelectImg(0)
+                                            }}>{cor.descricao}</button>
+                                        )
+                                    }
+                                })}
+                            </div>
+                            <Link to={`/produto/${produto?.id}`}>
+                                <h1 className="titulo">{produto?.descricao}</h1>
+                            </Link>
+                            <div className='preco'>
+                                <span className="valores">
+                                    <p className="valores-texto">Valor do Produto: </p><p>R${String(produto.preco_lista?.toFixed(2)).replace('.', ',')}</p>
+                                </span>
+                                <span className="valores">
+                                    <p className="valores-texto">Valor do ICMS ST: </p><p>R${String(0.0.toFixed(2)).replace('.', ',')}</p>
+                                </span>
+                                <span className="valores">
+                                    <p className="valores-texto">Valor do IPI: </p><p>R${String(0.0.toFixed(2)).replace('.', ',')}</p>
+                                </span>
+                                <span className="valores">
+                                    <p className="valores-texto"><b>Valor do Produto + Impostos: </b></p><p><b>R${String(produto.preco_lista?.toFixed(2)).replace('.', ',')}</b></p>
+                                </span>
+                                <span className="valores">
+                                    <p className="valores-texto"><b>Preço Sugerido: </b></p><p><b>R${String(produto.preco_sugerido?.toFixed(2)).replace('.', ',')}</b></p>
+                                </span>
+                            </div>
                         </div>
                     </div>
-                </div> : null}
+                </div>
+                : null}
         </>
     )
 }

@@ -6,6 +6,7 @@ import CardProdutos from '@/components/card_produtos/MiniCard';
 import MarketPage from '@/components/marketPage';
 import { actionCreators as produtosAC } from '@/redux/produtos'
 import { SearchContext } from '@/components/context/SerchContext'
+import Strings from '@/constants';
 
 
 const img = [{ img: 'https://motorsports.vteximg.com.br/arquivos/K3-SV-BUBBLE.jpg?v=637843248198530000', link: 10 },
@@ -25,7 +26,7 @@ const Market = (props: any) => {
     const [pageItens, SetPageItens] = useState(initialValues)
     const [num, setNum] = useState([0, 20])
     const prodFiltardos: { id: number, descricao: string, codigo: string }[] = []
-    const idProdutos:number[] = []
+    const idProdutos: number[] = []
     const [prodCarrossel, setProdCarrossel] = useState([0])
 
 
@@ -135,11 +136,13 @@ const Market = (props: any) => {
         setProdCarrossel(numAleatorio)
     }
 
+    console.log(produtos)
 
     return (
         <MarketPage>
             <div className='market'>
                 {search.length === 0 ?
+
                     <>
                         <div className='row'>
                             <Carrossel
@@ -149,40 +152,50 @@ const Market = (props: any) => {
                                 progressBar={true}
                                 link={false} />
                         </div>
-                        <h1 style={{ borderBottom: '1px solid white' }}>OS MAIS VENDIDOS</h1>
-                        <div className='d-flex' >
-                            <div className='produtos-carrossel' ref={carrossel}>
-                                {prodCarrossel.map((num) => {
-                                    const produto = prodFiltardos.find((prod) => prod.id === num)
-                                    return (
-                                        <React.Fragment key={num}>
-                                            {produto ?
-                                                <CardProdutos produto={produto} />
-                                                : null}
-                                        </React.Fragment>
+                        {produtos.length === 0 ?
+                            <div style={{ minHeight: '100px', display: 'flex', textAlign: 'center', color: '#fff' }}>
+                                <p style={{ width: '100%', alignSelf: 'center', margin: '0' }}>
+                                    <span style={{ paddingRight: '10px' }}><i className="fas fa-spinner fa-pulse"></i></span>
+                                    {Strings.general.loading}
+                                </p>
+                            </div> :
+                            <>
+                                <h1 style={{ borderBottom: '1px solid white' }}>OS MAIS VENDIDOS</h1>
+                                <div className='d-flex' >
+                                    <div className='produtos-carrossel' ref={carrossel}>
+                                        {prodCarrossel.map((num) => {
+                                            const produto = prodFiltardos.find((prod) => prod.id === num)
+                                            return (
+                                                <React.Fragment key={num}>
+                                                    {produto ?
+                                                        <CardProdutos produto={produto} />
+                                                        : null}
+                                                </React.Fragment>
 
-                                    )
-                                })}
-                            </div>
-                            <div className='btn-carrossel-produto'  >
-                                <button onClick={carrosselPrev}><i className="fa fa-angles-left"></i></button>
-                            </div>
-                            <div className='btn-carrossel-produto' >
-                                <button onClick={carrosselNext}><i className="fa fa-angles-right"></i></button>
-                            </div>
-                        </div>
-                        <h1 style={{ borderBottom: '1px solid white' }} ref={prod}>TODOS OS PRODUTOS</h1>
-                        <div className='produtos'>
-                            {pageItens.map((item, id) => {
-                                if (item.descricao.toUpperCase().includes(search.toUpperCase())) {
-                                    return (
-                                        <React.Fragment key={id}>
-                                            <CardProdutos produto={item} />
-                                        </React.Fragment>
-                                    )
-                                }
-                            })}
-                        </div>
+                                            )
+                                        })}
+                                    </div>
+                                    <div className='btn-carrossel-produto'  >
+                                        <button onClick={carrosselPrev}><i className="fa fa-angles-left"></i></button>
+                                    </div>
+                                    <div className='btn-carrossel-produto' >
+                                        <button onClick={carrosselNext}><i className="fa fa-angles-right"></i></button>
+                                    </div>
+                                </div>
+                                <h1 style={{ borderBottom: '1px solid white' }} ref={prod}>TODOS OS PRODUTOS</h1>
+                                <div className='produtos'>
+                                    {pageItens.map((item, id) => {
+                                        if (item.descricao.toUpperCase().includes(search.toUpperCase())) {
+                                            return (
+                                                <React.Fragment key={id}>
+                                                    <CardProdutos produto={item} />
+                                                </React.Fragment>
+                                            )
+                                        }
+                                    })}
+                                </div>
+                            </>
+                        }
                     </> :
                     <>
                         <h1 ref={prod}>{`Resultados da pesquisa: ${search.toUpperCase()}`}</h1>

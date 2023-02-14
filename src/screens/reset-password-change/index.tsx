@@ -29,7 +29,7 @@ export const ResetPasswordChangeScreen = (): JSX.Element => {
           </div>
           <p className="text-start">{Strings.resetPassswordChange.subtitle}</p>
           <div className="login-content"></div>
-          {/* <ResetPasswordChangeForm /> */}
+          <ResetPasswordChangeForm />
         </div>
       </div>
     </UnauthenticatedPage>

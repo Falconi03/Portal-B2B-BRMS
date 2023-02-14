@@ -17,7 +17,7 @@ import Estoque from '@/screens/estoque'
 import Financeiro from '@/screens/financeiro'
 import Login from '@/screens/login'
 import Logout from '@/screens/logout'
-/* import ResetPasswordChange from '@/screens/reset-password-change' */
+import ResetPasswordChange from '@/screens/reset-password-change'
 import ResetPasswordRequest from '@/screens/reset-password-request'
 /* import Upload from './screens/upload-dragNdrop'
 import Banco from './screens/banco' */
@@ -71,7 +71,7 @@ const provider = (
             <App>
               <Switch>
                 <Route exact path='/'><Redirect to='/home' /></Route>
-                 {/* <Route exact path={Routes.ResetPasswordChange} component={ResetPasswordChange} /> */}
+                 <Route exact path={Routes.ResetPasswordChange} component={ResetPasswordChange} />
                  <Route exact path={Routes.ResetPasswordRequest} component={ResetPasswordRequest} />
                  <Route exact path={Routes.Login} component={Login} />
                 <PrivateRoute exact path={Routes.Logout} component={Logout} />

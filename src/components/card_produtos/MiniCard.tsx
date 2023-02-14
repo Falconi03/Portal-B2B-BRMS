@@ -42,7 +42,7 @@ const CardProdutos = (props: any) => {
                 </Link>
                 <div className='conteudo'>
                     <Link to={`/produto/${produto.id}`}>
-                        <p className="titulo"><strong>{produto.descricao}</strong></p>
+                        <p className="titulo"><strong>{produto.descricao.slice(0,45)}</strong></p>
                     </Link>
                     <div className='preco'>
                         <span>Preço: R${String(produto.preco_lista?.toFixed(2)).replace('.', ',')}</span>

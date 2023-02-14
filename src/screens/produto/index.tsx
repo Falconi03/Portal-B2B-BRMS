@@ -32,9 +32,7 @@ interface Pedido {
 interface Estoque {
     descricao: string,
     codigo_base: string,
-    saldo_2: number,
-    reserva: number,
-    reserva_brms: number
+    saldo_3: number,
     linha: boolean
 }
 
@@ -70,17 +68,17 @@ const Input = (props: PropsInput) => {
     return (
         <input
             min={0}
-            disabled={estoque.linha || (estoque.saldo_2 - estoque.reserva - estoque.reserva_brms) > 0 ? false : true}
+            disabled={estoque.linha || (estoque.saldo_3) > 0 ? false : true}
             key={estoque.codigo_base}
             type="number"
             value={value}
             onChange={(e) => {
                 if (+e.currentTarget.value >= 0) {
-                    if (+e.currentTarget.value > (estoque.saldo_2 - estoque.reserva - estoque.reserva_brms) && !estoque.linha) {
-                        setValue(estoque.saldo_2 - estoque.reserva - estoque.reserva_brms);
+                    if (+e.currentTarget.value > (estoque.saldo_3) && !estoque.linha) {
+                        setValue(estoque.saldo_3);
                         setPedido({
                             sku: estoque.codigo_base,
-                            quantidade: e.currentTarget.value === '' ? 0 : (estoque.saldo_2 - estoque.reserva - estoque.reserva_brms),
+                            quantidade: e.currentTarget.value === '' ? 0 : (estoque.saldo_3),
                             preco: produto.preco_lista
                         })
                     } else {
@@ -112,7 +110,7 @@ const Produto = (props: any) => {
         }
     }
 
-    const [produto, setProduto] = useState<Produto>({ preco_lista: 0, descricao_produto: "", ficha_tecnica: "", detalhes: "", itens: [{ descricao: '', codigo: '', itens: [{ descricao: '', codigo_base: '', saldo_2: 0, reserva: 0, reserva_brms: 0, linha: true }] }], codigo: '', id: 0, descricao: '' })
+    const [produto, setProduto] = useState<Produto>({ preco_lista: 0, descricao_produto: "", ficha_tecnica: "", detalhes: "", itens: [{ descricao: '', codigo: '', itens: [{ descricao: '', codigo_base: '', saldo_3: 0, linha: true }] }], codigo: '', id: 0, descricao: '' })
     const [descricao, setDescricao] = useState(produto.descricao_produto.length > 0 ? produto.descricao_produto : "Estamos trabalhando nisso")
     const [pedido, setPedido] = useState<Pedido>({ sku: '', quantidade: 0, preco: 0 })
 
@@ -198,7 +196,7 @@ const Produto = (props: any) => {
                                                 <tr className="estoque-input">
                                                     <td style={{ whiteSpace: 'pre' }}>{`${cor.descricao}: `}</td>
                                                     {especTam.map((tam, id) => {
-                                                        let estoque: Estoque | undefined = { descricao: '', codigo_base: '', saldo_2: 0, reserva: 0, reserva_brms: 0, linha: true }
+                                                        let estoque: Estoque | undefined = { descricao: '', codigo_base: '', saldo_3: 0, linha: true }
                                                         if (estoque = cor.itens.find((estoque) => tam === estoque.descricao)) {
                                                             return (
                                                                 <td key={id}>
@@ -219,10 +217,10 @@ const Produto = (props: any) => {
                                                 <tr className="estoque" style={{ backgroundColor: "#0000000d" }}>
                                                     <td>Estoque: </td>
                                                     {especTam.map((tam, id) => {
-                                                        let estoque: Estoque | undefined = { descricao: '', codigo_base: '', saldo_2: 0, reserva: 0, reserva_brms: 0, linha: true }
+                                                        let estoque: Estoque | undefined = { descricao: '', codigo_base: '', saldo_3: 0, linha: true }
                                                         if (estoque = cor.itens.find((estoque) => tam === estoque.descricao)) {
                                                             return (
-                                                                <td key={id}>{estoque.saldo_2 - estoque.reserva - estoque.reserva_brms}</td>
+                                                                <td key={id}>{estoque.saldo_3}</td>
                                                             )
                                                         } else {
                                                             return (

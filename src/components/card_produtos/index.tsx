@@ -110,7 +110,11 @@ const CardProdutos = (props: any) => {
                             {produto?.itens.map((cor: any, id: number) => {
                                 if (cor.itens.length > 0) {
                                     return (
-                                        <button key={id} onClick={() => setCorProduto(id)}>{cor.descricao}</button>
+                                        <button key={id} onClick={() => {
+                                            setCorProduto(id)
+                                            setImagem(1)
+                                            setSelectImg(0)
+                                        }}>{cor.descricao}</button>
                                     )
                                 }
                             })}

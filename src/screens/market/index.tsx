@@ -136,7 +136,6 @@ const Market = (props: any) => {
         setProdCarrossel(numAleatorio)
     }
 
-    console.log(produtos)
 
     return (
         <MarketPage>

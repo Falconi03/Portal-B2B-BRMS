@@ -113,7 +113,8 @@ const CardProdutos = (props: any) => {
                                                 setCorProduto(id)
                                                 setImagem(1)
                                                 setSelectImg(0)
-                                            }}>{cor.descricao}</button>
+                                            }}
+                                            style={corProduto === id ?{ border:  '1px solid #e77600', boxShadow: '0 0 3px 2px #e4791180'}:{}}>{cor.descricao}</button>
                                         )
                                     }
                                 })}

@@ -37,6 +37,7 @@
 
     .card-produto {
         width: 90%;
+
         .card-img {
             display: flex;
             align-items: center;
@@ -56,31 +57,36 @@
             }
         }
 
-        
+
         .conteudo {
             color: $black;
             padding: 1rem;
-            
+
             .buttons {
                 display: flex;
                 justify-content: center;
                 flex-wrap: wrap;
                 gap: 1rem;
                 margin-bottom: 1rem;
-                
+
                 button {
-                    border: 1px solid #888;
+                    border: 1px solid #00000020;
                     background: transparent;
                     border-radius: 6px;
                     color: #888;
                     font-weight: 100;
+
+                    &:hover {
+                        background: #00000020;
+                        color: white;
+                    }
                 }
             }
-            
+
             a {
                 text-decoration: none;
             }
-            
+
             h1 {
                 @include media-breakpoint-down(md) {
                     font-size: medium;
@@ -94,11 +100,11 @@
                 text-align: center;
                 padding: 1rem 0;
             }
-            
+
             .preco {
                 display: flex;
                 flex-direction: column;
-                
+
                 @include media-breakpoint-down(md) {
                     font-size: small
                 }
@@ -114,30 +120,30 @@
             }
         }
     }
-    
+
     .img-popup {
         display: flex;
-    
+
         .app-sidebar-content {
             width: auto;
             height: 90vh;
-    
+
             @include media-breakpoint-down(lg) {
                 display: none;
             }
-    
+
             .mini-images {
                 width: 100%;
                 display: flex;
                 flex-direction: column;
                 gap: 10px;
                 padding-top: 10px;
-    
+
                 .mini-img {
                     width: 100%;
                     border: 1px solid #00000020;
                     border-radius: 30%;
-    
+
                     &:hover {
                         border: 1px solid #e77600;
                         box-shadow: 0 0 3px 2px #e4791180;
@@ -145,18 +151,18 @@
                 }
             }
         }
-    
+
         .img-principal {
             width: 90%;
             text-align: center;
-    
+
             @include media-breakpoint-down(lg) {
                 width: 100%;
             }
-    
+
             img {
                 width: 100%;
-    
+
                 @include media-breakpoint-up(lg) {
                     width: auto;
                     height: 90vh;

@@ -111,7 +111,7 @@ const Produto = (props: any) => {
     }
 
     const [produto, setProduto] = useState<Produto>({ preco_lista: 0, descricao_produto: "", ficha_tecnica: "", detalhes: "", itens: [{ descricao: '', codigo: '', itens: [{ descricao: '', codigo_base: '', saldo_3: 0, linha: true }] }], codigo: '', id: 0, descricao: '' })
-    const [descricao, setDescricao] = useState(produto.descricao_produto.length > 0 ? produto.descricao_produto : "Estamos trabalhando nisso")
+    const [descricao, setDescricao] = useState(produto.descricao_produto.length > 0 ? produto.descricao_produto : "Estamos trabalhando nessa descrição")
     const [pedido, setPedido] = useState<Pedido>({ sku: '', quantidade: 0, preco: 0 })
 
 
@@ -238,9 +238,27 @@ const Produto = (props: any) => {
                     </div>
                     <div className="descricao">
                         <div className="btns-desc">
-                            <button onClick={() => setDescricao(produto.descricao_produto.length > 0 ? produto.descricao_produto : "Estamos trabalhando nisso")}>Descrição</button>
-                            <button onClick={() => setDescricao(produto.ficha_tecnica.length > 0 ? produto.ficha_tecnica : "Estamos trabalhando nisso")}>Ficha Técnica</button>
-                            <button onClick={() => setDescricao(produto.detalhes.length > 0 ? produto.detalhes : "Estamos trabalhando nisso")}>Detalhes</button>
+                            <button
+                                onClick={() => setDescricao(produto.descricao_produto.length > 0 ? produto.descricao_produto : "Estamos trabalhando nessa descrição")}
+                                style={descricao === produto.descricao_produto || descricao === "Estamos trabalhando nessa descrição" ? {
+                                    border: '1px solid #e77600',
+                                    boxShadow: '0 0 3px 2px #e4791180',
+                                } : {}}
+                            >Descrição</button>
+                            <button
+                                onClick={() => setDescricao(produto.ficha_tecnica.length > 0 ? produto.ficha_tecnica : "Estamos trabalhando nessa ficha técinica")}
+                                style={descricao === produto.ficha_tecnica || descricao === "Estamos trabalhando nessa ficha técinica" ? {
+                                    border: '1px solid #e77600',
+                                    boxShadow: '0 0 3px 2px #e4791180',
+                                } : {}}
+                            >Ficha Técnica</button>
+                            <button
+                                onClick={() => setDescricao(produto.detalhes.length > 0 ? produto.detalhes : "Estamos trabalhando nesse detalhe")}
+                                style={descricao === produto.detalhes || descricao === "Estamos trabalhando nesse detalhe" ? {
+                                    border: '1px solid #e77600',
+                                    boxShadow: '0 0 3px 2px #e4791180',
+                                } : {}}
+                            >Detalhes</button>
                         </div>
                         <div className="txt-desc">
                             {descricao}

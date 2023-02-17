@@ -170,10 +170,10 @@ const Carrinho = (props: any) => {
             'Authorization': 'Bearer ' + token?.access
         }
     }
-    const [transportadoras, setTransportadoras] = useState([{ nome_reduzido: '' }])
-    const [condPag, setCondPag] = useState([{ descricao: '' }])
-    const [transportadoraOrc, setTransportadoraOrc] = useState({ nome_reduzido: '' })
-    const [condPagOrc, setCondPagOrc] = useState({ descricao: '' })
+    const [transportadoras, setTransportadoras] = useState([{ nome_reduzido: '', id: 0 }])
+    const [condPag, setCondPag] = useState([{ descricao: '', id: 0 }])
+    const [transportadoraOrc, setTransportadoraOrc] = useState({ nome_reduzido: '', id: 0 })
+    const [condPagOrc, setCondPagOrc] = useState({ descricao: '', id: 0 })
     const [frete, setFrete] = useState('CIF')
     const [infoAdicionais, setInfoAdicionais] = useState('')
     const { loja } = useContext(InfoClienteContext)
@@ -185,6 +185,7 @@ const Carrinho = (props: any) => {
         props.getSaldos()
         axios.get(`${Config.API_URL}transportadora/lista_transportadora/?limit=1000`, config).then((res: any) => {
             setTransportadoras(res.data.results)
+            setTransportadoraOrc(res.data.results.find((res: { id: number }) => res.id === 565))
 
 
         })
@@ -201,9 +202,15 @@ const Carrinho = (props: any) => {
 
     useEffect(() => {
         if (carrinho) {
+            transportadoras.find((res: { nome_reduzido: string, id: number }) => {
+                if(res.id === carrinho.transportadora){
+                    setTransportadoraOrc(res)
+                }})
+                condPag.find((res: { descricao: string, id: number }) => {
+                if(res.id === carrinho.condicaopagamento){
+                    setCondPagOrc(res)
+                }})
             setInfoAdicionais(carrinho.inf_adicionais)
-            setTransportadoraOrc(carrinho.transportadora)
-            setCondPagOrc(carrinho.condicaopagamento)
             setFrete(carrinho.tipo_frete)
         }
     }, [carrinho])
@@ -437,7 +444,9 @@ const Carrinho = (props: any) => {
                                                                         onClick={() => {
                                                                             altInfoPedido({
                                                                                 tipo_frete: frete,
-                                                                                inf_adicionais: infoAdicionais
+                                                                                inf_adicionais: infoAdicionais,
+                                                                                condicaopagamento: condPagOrc.id,
+                                                                                transportadora: transportadoraOrc.id
                                                                             })
                                                                             close();
                                                                         }}>

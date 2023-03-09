@@ -31,11 +31,17 @@ const Market = (props: any) => {
 
 
     produtos.map((item: { descricao: '', codigo: '', id: 0 }) => {
-        if (item.descricao.toUpperCase().includes(search.toUpperCase()) || item.codigo.includes(search)) {
+        let existe = true
+        search.toUpperCase().split(' ').map((palavra)=>{
+            if(!item.descricao.toUpperCase().includes(palavra)){
+                existe = false
+            }
+        })  
+        if (existe || item.codigo.includes(search)) {
             return (
                 prodFiltardos.push(item),
                 idProdutos.push(item.id)
-            )
+                )
         }
     })
 
@@ -91,7 +97,7 @@ const Market = (props: any) => {
     useEffect(() => {
         SetPageItens(prodFiltardos.slice(num[0], num[1]))
         prodFiltardos.length > 0 && search.length === 0 && prodCarrossel.length < 20 ? gerarNumero() : null
-    }, [produtos, num])
+    }, [produtos, num, search])
 
     useEffect(() => {
         setNum([0, 20])
@@ -184,13 +190,11 @@ const Market = (props: any) => {
                                 <h1 style={{ borderBottom: '1px solid white' }} ref={prod}>TODOS OS PRODUTOS</h1>
                                 <div className='produtos'>
                                     {pageItens.map((item, id) => {
-                                        if (item.descricao.toUpperCase().includes(search.toUpperCase())) {
                                             return (
                                                 <React.Fragment key={id}>
                                                     <CardProdutos produto={item} />
                                                 </React.Fragment>
                                             )
-                                        }
                                     })}
                                 </div>
                             </>
@@ -200,13 +204,11 @@ const Market = (props: any) => {
                         <h1 ref={prod}>{`Resultados da pesquisa: ${search.toUpperCase()}`}</h1>
                         <div className='produtos' >
                             {pageItens.map((item, id) => {
-                                if (item.descricao.toUpperCase().includes(search.toUpperCase()) || item.codigo.includes(search)) {
                                     return (
                                         <React.Fragment key={id}>
                                             <CardProdutos produto={item} />
                                         </React.Fragment>
                                     )
-                                }
                             })}
                         </div>
                     </>}

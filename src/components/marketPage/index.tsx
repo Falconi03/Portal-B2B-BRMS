@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { actionCreators as carrinhoAC } from '@/redux/carrinho'
@@ -12,22 +12,92 @@ import SidebarNew from '../sidebar/SidebarNew';
 import DropDown from '../dropdown/Dropdown'
 import { DropdownItem } from 'reactstrap';
 import { InfoClienteContext } from '../context/InfoCliente';
+import axios from 'axios';
+import { getAuth } from '@/helpers/auth'
+import Config from '@/config'
 
 export type PageProps = {
   children: React.ReactNode | null
   getSaldos: any
   infoClienteProp: any
+  carrinhoProp: any
 }
 
-const MarketPage = ({ infoClienteProp, getSaldos, children }: PageProps): JSX.Element => {
+const initialValueLoja = {
+  ativo: '',
+  bairro: '',
+  cep: '',
+  classificacao: '',
+  cnpj: '',
+  codigo: '',
+  complemento: '',
+  data_insert: '',
+  data_update: '',
+  desconto_maximo: 0,
+  email: '',
+  email_portal: '',
+  empresa: '',
+  endereco: '',
+  estado: '',
+  filial: '',
+  grupo_clientes: '',
+  id: 0,
+  incricao_estadual: '',
+  isento_st: false,
+  loja: '',
+  municipio: '',
+  nome_fantasia: 'Escolher Loja',
+  numero: '',
+  observacao: '',
+  razao_social: '',
+  tabela_preco_1: '',
+  tabela_preco_2: '',
+  telefone: '',
+  tipo: '',
+  vendedor: '',
+}
+
+const MarketPage = ({ infoClienteProp, getSaldos, children, carrinhoProp }: PageProps): JSX.Element => {
 
   const { search, setSearch } = useContext(SearchContext)
   const { loja, setLoja } = useContext(InfoClienteContext)
   const infoCliente = infoClienteProp.infoCliente ? infoClienteProp.infoCliente : null
+  const carrinho = carrinhoProp.carrinho[0] ? carrinhoProp.carrinho[0] : null
+
+  const token = getAuth()
+  const config = {
+    headers: {
+      'Authorization': 'Bearer ' + token?.access
+    }
+  }
 
   useEffect(() => {
     getSaldos()
   }, [])
+
+  const trocarLoja = (lojas: { loja: string, codigo: string }) => {
+    if (carrinho) {
+      const bodyParameters = {
+        transportadora: String(carrinho.transportadora),
+        condicaopagamento: String(carrinho.condicaopagamento),
+        inf_adicionais:carrinho.inf_adicionais,
+				tipo_frete: carrinho.tipo_frete,
+        loja: lojas.loja,
+        codigo: lojas.codigo
+      }
+      axios.post(`${Config.API_URL}pedido/pedido/`, bodyParameters, config)
+        .then((res: any) => {
+          console.log(res.status)
+
+        })
+        .catch((error: any) => {
+          console.log(error.response)
+          if (error.response.status === 401) {
+            window.location.reload()
+          }
+        })
+    }
+  }
 
   return (
     <>
@@ -76,7 +146,10 @@ const MarketPage = ({ infoClienteProp, getSaldos, children }: PageProps): JSX.El
                 size='md'>
                 {infoCliente?.map((lojas: any, id: number) => {
                   return (
-                    <DropdownItem key={id} onClick={() => setLoja(lojas)} >{lojas.cnpj} - {lojas.nome_fantasia}</DropdownItem>
+                    <DropdownItem key={id} onClick={() => {
+                      setLoja(lojas)
+                      trocarLoja(lojas)
+                    }} >{lojas.cnpj} - {lojas.nome_fantasia}</DropdownItem>
                   )
                 })}
               </DropDown>
@@ -93,7 +166,7 @@ const MarketPage = ({ infoClienteProp, getSaldos, children }: PageProps): JSX.El
 }
 const mapStateToProps = (state: any) => {
   return {
-    carrinho: state.carrinho,
+    carrinhoProp: state.carrinho,
     infoClienteProp: state.infoCliente
   }
 }

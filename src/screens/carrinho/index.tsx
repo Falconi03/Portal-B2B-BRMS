@@ -170,10 +170,10 @@ const Carrinho = (props: any) => {
             'Authorization': 'Bearer ' + token?.access
         }
     }
-    const [transportadoras, setTransportadoras] = useState([{ nome_reduzido: '', id: 0 }])
-    const [condPag, setCondPag] = useState([{ descricao: '', id: 0 }])
-    const [transportadoraOrc, setTransportadoraOrc] = useState({ nome_reduzido: '', id: 0 })
-    const [condPagOrc, setCondPagOrc] = useState({ descricao: '', id: 0 })
+    const [transportadoras, setTransportadoras] = useState([{ nome_reduzido: '', id: 0, codigo: '' }])
+    const [condPag, setCondPag] = useState([{ descricao: '', id: 0, codigo: '' }])
+    const [transportadoraOrc, setTransportadoraOrc] = useState({ nome_reduzido: '', id: 0, codigo: '' })
+    const [condPagOrc, setCondPagOrc] = useState({ descricao: '', id: 0, codigo: '' })
     const [frete, setFrete] = useState('CIF')
     const [infoAdicionais, setInfoAdicionais] = useState('')
     const { loja } = useContext(InfoClienteContext)
@@ -202,14 +202,16 @@ const Carrinho = (props: any) => {
 
     useEffect(() => {
         if (carrinho) {
-            transportadoras.find((res: { nome_reduzido: string, id: number }) => {
-                if(res.id === carrinho.transportadora){
+            transportadoras.find((res: { nome_reduzido: string, id: number, codigo: string }) => {
+                if (res.id === carrinho.transportadora) {
                     setTransportadoraOrc(res)
-                }})
-                condPag.find((res: { descricao: string, id: number }) => {
-                if(res.id === carrinho.condicaopagamento){
+                }
+            })
+            condPag.find((res: { descricao: string, id: number, codigo: string }) => {
+                if (res.id === carrinho.condicaopagamento) {
                     setCondPagOrc(res)
-                }})
+                }
+            })
             setInfoAdicionais(carrinho.inf_adicionais)
             setFrete(carrinho.tipo_frete)
         }
@@ -446,7 +448,9 @@ const Carrinho = (props: any) => {
                                                                                 tipo_frete: frete,
                                                                                 inf_adicionais: infoAdicionais,
                                                                                 condicaopagamento: condPagOrc.id,
-                                                                                transportadora: transportadoraOrc.id
+                                                                                transportadora: transportadoraOrc.id,
+                                                                                loja: loja.loja,
+                                                                                codigo: loja.codigo
                                                                             })
                                                                             close();
                                                                         }}>

@@ -6,16 +6,22 @@ const CardProdutos = (props: any) => {
 
     const card = useRef(null)
     const produto = props.produto
-    const [img, setImg] = useState(<></>)
-    const [img2, setImg2] = useState(true)
-    
+    const [testeImg, setTesteImg] = useState(true)
+    const [imagem1, setImagem1] = useState(<></>)
+    const [imagem2, setImagem2] = useState(<></>)
 
     useEffect(() => {
-        setImg(
-            <img src={`https://${window.location.hostname}/images/produto/${produto.codigo}-1.jpg`} onError={({ currentTarget }) => {
-                setImg2(false)
+        setImagem1(
+            <img className='img1' src={`https://${window.location.hostname}/images/produto/${produto.codigo}-1.jpg`} onError={({ currentTarget }) => {
+                setTesteImg(false)
                 currentTarget.onerror = null; // prevents looping
                 currentTarget.src = `https://${window.location.hostname}/images/produto-sem-imagem.jpg`;
+            }} />
+        )
+        setImagem2(
+            <img className='img2' src={`https://${window.location.hostname}/images/produto/${produto.codigo}-2.jpg`} onError={({ currentTarget }) => {
+                currentTarget.onerror = null; // prevents looping
+                currentTarget.src = `https://${window.location.hostname}/images/produto/${produto.codigo}-1.jpg`
             }} />
         )
     }, [produto])
@@ -25,24 +31,14 @@ const CardProdutos = (props: any) => {
             <div
                 key={produto.id}
                 className='mini-card'
-                ref={card} onMouseOver={() => img2 ? setImg(
-                    <img src={`https://${window.location.hostname}/images/produto/${produto.codigo}-2.jpg`} onError={({ currentTarget }) => {
-                        currentTarget.onerror = null; // prevents looping
-                        currentTarget.src = `https://${window.location.hostname}/images/produto/${produto.codigo}-1.jpg`;
-                    }} />
-                ) : null}
-                onMouseOut={() => setImg(
-                    <img src={`https://${window.location.hostname}/images/produto/${produto.codigo}-1.jpg`} onError={({ currentTarget }) => {
-                        currentTarget.onerror = null; // prevents looping
-                        currentTarget.src = `https://${window.location.hostname}/images/produto-sem-imagem.jpg`;
-                    }} />
-                )} >
+                ref={card} >
                 <Link to={`/produto/${produto.id}`}>
-                    {img}
+                    {imagem1}
+                    {testeImg ? imagem2 : <img className='img2' src={`https://${window.location.hostname}/images/produto-sem-imagem.jpg`} />}
                 </Link>
                 <div className='conteudo'>
                     <Link to={`/produto/${produto.id}`}>
-                        <p className="titulo"><strong>{produto.descricao.slice(0,45)}</strong></p>
+                        <p className="titulo"><strong>{produto.descricao.slice(0, 45)}</strong></p>
                     </Link>
                     <div className='preco'>
                         <span>Preço: R${String(produto.preco_lista?.toFixed(2)).replace('.', ',')}</span>
